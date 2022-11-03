@@ -11,12 +11,7 @@ const Providers = ({ providers, search, sort }: any) => {
     fetch(url).then((res) => res.json())
   );
 
-  const [movie, setMovie] = useState<{
-    title: string;
-    id: number;
-    release_date: string;
-    first_air_date: string;
-  } | null>(null);
+  const [movie, setMovie] = useState<any>(null);
   const [found, setFound] = useState(false);
 
   useEffect(() => {
@@ -64,27 +59,21 @@ const Providers = ({ providers, search, sort }: any) => {
                   <>
                     <h2 className="text-xl">Avaliable at</h2>
                     <ul className="mb-10">
-                      {providers.results.CA.flatrate.map(
-                        (provider: {
-                          provider_id: number;
-                          provider_name: string;
-                          logo_path: string;
-                        }) => {
-                          return (
-                            <li
-                              key={provider.provider_id}
-                              className="flex w-full justify-between"
-                            >
-                              {provider.provider_name}
-                              <img
-                                src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
-                                alt=""
-                                className="w-10 rounded-full"
-                              />
-                            </li>
-                          );
-                        }
-                      )}
+                      {providers.results.CA.flatrate.map((provider: any) => {
+                        return (
+                          <li
+                            key={provider.provider_id}
+                            className="flex w-full justify-between"
+                          >
+                            {provider.provider_name}
+                            <img
+                              src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
+                              alt=""
+                              className="w-10 rounded-full"
+                            />
+                          </li>
+                        );
+                      })}
                     </ul>
                   </>
                 )}
@@ -92,26 +81,21 @@ const Providers = ({ providers, search, sort }: any) => {
                   <>
                     <h2 className="text-xl">Avaliable for Purchase</h2>
                     <ul>
-                      {providers.results.CA.buy.map(
-                        (provider: {
-                          provider_id: number;
-                          provider_name: string;
-                        }) => {
-                          return (
-                            <li
-                              key={provider.provider_id}
-                              className="flex w-full justify-between"
-                            >
-                              {provider.provider_name}
-                              <img
-                                src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
-                                alt=""
-                                className="w-10 rounded-full"
-                              />
-                            </li>
-                          );
-                        }
-                      )}
+                      {providers.results.CA.buy.map((provider: any) => {
+                        return (
+                          <li
+                            key={provider.provider_id}
+                            className="flex w-full justify-between"
+                          >
+                            {provider.provider_name}
+                            <img
+                              src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
+                              alt=""
+                              className="w-10 rounded-full"
+                            />
+                          </li>
+                        );
+                      })}
                     </ul>
                   </>
                 )}
