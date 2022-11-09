@@ -87,14 +87,14 @@ const Form = ({ search, setSearch }: props) => {
 const Results = ({ search, setSearch, sort }: props) => {
   const [providers, setProviders] = useState<object | null>(null);
 
-  const url = `http://api.themoviedb.org/3/search/${sort}/?api_key=3e377c1f356a2442895502b892470a0b&language=en-US&query=${search}&include_adult=false`;
+  const url = `https://api.themoviedb.org/3/search/${sort}/?api_key=3e377c1f356a2442895502b892470a0b&language=en-US&query=${search}&include_adult=false`;
   const { isLoading, error, data } = useQuery(["search"], () =>
     fetch(url).then((res) => res.json())
   );
 
   const getProviders = (movieId: number) => {
     fetch(
-      `http://api.themoviedb.org/3/${sort}/${movieId}/watch/providers?api_key=3e377c1f356a2442895502b892470a0b`
+      `https://api.themoviedb.org/3/${sort}/${movieId}/watch/providers?api_key=3e377c1f356a2442895502b892470a0b`
     ).then((res) => {
       res.json().then((res) => {
         setProviders(res);
