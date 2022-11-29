@@ -21,8 +21,7 @@ const Providers = ({ providers, search, sort }: any) => {
         setMovie(movie);
       }
     });
-    if (!isLoading && movie) {
-      console.log(data);
+    if (!isLoading && movie && !error) {
       data.Items.forEach((item: { UserData: { Key: number } }) => {
         if (movie.id === Number(item.UserData.Key)) {
           console.log("found in jellyfin");
@@ -48,9 +47,13 @@ const Providers = ({ providers, search, sort }: any) => {
             "
           </span>
           <div>
-            {found && (
-              <h2 className="text-red-500 text-3xl bg-white rounded p-1">
+            {found ? (
+              <h2 className="text-red-500 text-3xl rounded p-1">
                 Movie is Available on borsethserver.online
+              </h2>
+            ) : (
+              <h2 className="text-red-500 text-2xl rounded p-1 m-3">
+                Not Found on borsethserver.online
               </h2>
             )}
             {providers.results.CA ? (

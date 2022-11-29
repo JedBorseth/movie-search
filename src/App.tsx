@@ -23,7 +23,7 @@ function App() {
       {search ? (
         <Results search={search} setSearch={setSearch} sort={sort} />
       ) : (
-        <Form search={search} setSearch={setSearch} sort={null} />
+        <Form search={search} setSearch={setSearch} sort={sort} />
       )}
       {search && (
         <div
@@ -35,18 +35,20 @@ function App() {
           New Search
         </div>
       )}
-      <div
-        className="text-white p-10 bg-neutral-600 rounded-xl hover:bg-neutral-700 hover:scale-105"
-        onClick={() => {
-          if (sort === "movie") {
-            setSort("tv");
-          } else {
-            setSort("movie");
-          }
-        }}
-      >
-        Toggle {sort} Search
-      </div>
+      {!search && (
+        <div
+          className="text-white p-10 bg-neutral-600 rounded-xl hover:bg-neutral-700 hover:scale-105"
+          onClick={() => {
+            if (sort === "movie") {
+              setSort("tv");
+            } else {
+              setSort("movie");
+            }
+          }}
+        >
+          Toggle {sort} Search
+        </div>
+      )}
     </div>
   );
 }
@@ -57,7 +59,7 @@ type props = {
   setSearch: Function;
   sort: string | null;
 };
-const Form = ({ search, setSearch }: props) => {
+const Form = ({ search, setSearch, sort }: props) => {
   return (
     <form
       action="#"
@@ -73,7 +75,7 @@ const Form = ({ search, setSearch }: props) => {
         type="text"
         autoFocus
         className="rounded-md w-full text-center h-10"
-        placeholder="Search..."
+        placeholder={`Search ${sort === "movie" ? "Movies" : "TV Shows"}...`}
       />
       <input
         type="submit"
